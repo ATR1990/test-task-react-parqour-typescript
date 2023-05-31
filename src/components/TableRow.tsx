@@ -29,8 +29,7 @@ export const TableRow = (props: { tasks: Task[] }) => {
 
   const drop = () => {
     const copyListItems = [...list]
-    // @ts-ignore
-    const dragItemContent = copyListItems[dragItem.current]
+    const dragItemContent = copyListItems[dragItem.current!]
 
     if (typeof dragItem.current === "number") {
       copyListItems.splice(dragItem.current, 1)
