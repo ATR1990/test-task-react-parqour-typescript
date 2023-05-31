@@ -20,8 +20,8 @@ export const TableRow = (props: { tasks: Task[] }) => {
 
   const [deleteTask] = useDeleteTaskMutation()
 
-  const dragItem = useRef<number | null>()
-  const dragOverItem = useRef<number | null>()
+  const dragItem = useRef<number | null>(null)
+  const dragOverItem = useRef<number | null>(null)
 
   const dragStart = (position: number) => () => dragItem.current = position
 
@@ -29,13 +29,14 @@ export const TableRow = (props: { tasks: Task[] }) => {
 
   const drop = () => {
     const copyListItems = [...list]
-    const dragItemContent = dragItem.current && copyListItems[dragItem.current]
+    // @ts-ignore
+    const dragItemContent = copyListItems[dragItem.current]
 
     if (typeof dragItem.current === "number") {
       copyListItems.splice(dragItem.current, 1)
     }
     if (typeof dragOverItem.current === "number") {
-      copyListItems.splice(dragOverItem.current, 0, dragItemContent as Task)
+      copyListItems.splice(dragOverItem.current, 0, dragItemContent)
     }
 
     dragItem.current = null
