@@ -5,13 +5,13 @@ import { useGetTaskByIdQuery, useCreateTaskMutation, useUpdateTaskMutation } fro
 import { useGetStatusesQuery } from '../redux/api/statuses'
 import { Status } from '../types/Task'
 
-type ModalPops = {
+type ModalProps = {
   show: boolean,
   setShow: Dispatch<SetStateAction<boolean>>,
   id?: string
 }
 
-export const DataModal = (props: ModalPops) => {
+export const DataModal = (props: ModalProps) => {
   const  { show, setShow, id} = props
 
   const { data: statuses } = useGetStatusesQuery(null)
